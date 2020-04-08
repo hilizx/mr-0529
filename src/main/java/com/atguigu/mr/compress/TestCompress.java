@@ -18,13 +18,13 @@ import org.apache.hadoop.util.ReflectionUtils;
 public class TestCompress {
 
 	public static void main(String[] args) throws Exception {
-		
+
 		// 压缩
-//		compress("e:/hello.txt","org.apache.hadoop.io.compress.BZip2Codec");
-//		compress("e:/hello.txt","org.apache.hadoop.io.compress.GzipCodec");
-//		compress("e:/hello.txt","org.apache.hadoop.io.compress.DefaultCodec");
+//		compress("/Users/lizhixuan/Desktop/progit_v2.1.36.pdf","org.apache.hadoop.io.compress.BZip2Codec");
+//		compress("/Users/lizhixuan/Desktop/progit_v2.1.36.pdf","org.apache.hadoop.io.compress.GzipCodec");
+		compress("/Users/lizhixuan/Desktop/progit_v2.1.36.pdf","org.apache.hadoop.io.compress.DefaultCodec");
 		
-		decompress("e:/hello.txt.deflate");
+//		decompress("e:/hello.txt.deflate");
 		
 	}
 
@@ -56,13 +56,13 @@ public class TestCompress {
 		IOUtils.closeStream(fis);
 	}
 
-	@SuppressWarnings({ "resource", "unchecked" })
+	@SuppressWarnings({ "resource"})
 	private static void compress(String fileName, String method) throws ClassNotFoundException, IOException {
 		
 		// 1 获取输入流
 		FileInputStream fis = new FileInputStream(new File(fileName));
 		
-		Class classCodec = Class.forName(method);
+		Class<?> classCodec = Class.forName(method);
 		CompressionCodec codec = (CompressionCodec) ReflectionUtils.newInstance(classCodec, new Configuration());
 		
 		// 2 获取输出流

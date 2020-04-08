@@ -11,6 +11,10 @@ public class OrderReducer extends Reducer<OrderBean, NullWritable, OrderBean, Nu
 	protected void reduce(OrderBean key, Iterable<NullWritable> values, Context context)
 			throws IOException, InterruptedException {
 
+		System.out.println("----");
+		System.out.println("----");
+		System.out.println("----");
+
 		for (NullWritable nullWritable : values) {
 			context.write(key, NullWritable.get());
 		}
